@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/logs:/var/log/nginx
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      # queen_tech
+      - "8080:80"
+  queen_tech:
+    image: serversideup/php:8.2-fpm-nginx
+    environment:
+      SSL_MODE: "off"
+    volumes:
+      - .:/var/www/html
