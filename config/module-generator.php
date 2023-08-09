@@ -15,7 +15,7 @@ return [
         'import' => 'Domain\Imports',
         'job' => 'Domain\Jobs',
         'responder' => 'Responders',
-        'listener'  => 'Domain\Listeners',
+        'listener' => 'Domain\Listeners',
         'mail' => 'Domain\Mails',
         'model' => 'Domain\Models',
         'notification' => 'Domain\Notifications',
@@ -30,7 +30,7 @@ return [
 
     'related_types' => [
         'action,responder,request,service',
-        'facade,class',        
+        'facade,class',
     ],
 
     'dont_rename' => [
@@ -40,6 +40,6 @@ return [
         'trait',
         'facade',
         'class',
-        'enum',        
+        'enum',
     ],
 ];

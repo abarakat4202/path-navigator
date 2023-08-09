@@ -15,12 +15,9 @@ class AutoCompleteAction
 
     public function __invoke(AutoCompleteRequest $request)
     {
-        try
-        {
+        try {
             $suggestions = glob("$request->file_path*");
-        }
-        catch(\Throwable $e)
-        {
+        } catch (\Throwable $e) {
             Log::error('GET_AUTO_COMPLETE_ACTION_ERROR', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile(),

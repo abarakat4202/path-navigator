@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 class GetFileLinesResponder
 {
     use HasErrorResponse;
-    
+
     public function send(LengthAwarePaginator $fileLinesPaginator): LengthAwarePaginator
     {
         return $fileLinesPaginator;

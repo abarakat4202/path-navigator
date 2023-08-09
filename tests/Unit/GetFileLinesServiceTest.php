@@ -10,17 +10,20 @@ use PHPUnit\Framework\TestCase;
 class GetFileLinesServiceTest extends TestCase
 {
     protected $filePath;
+
     protected $existingFilePath;
+
     protected $nonExistingFilePath;
+
     protected $getFileLinesService;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->filePath = __DIR__ . '/test_file.txt'; // Replace with your own test file path
-        $this->existingFilePath = __DIR__ . '/existing_file.txt'; // Replace with the path of an existing file on your system
-        $this->nonExistingFilePath = __DIR__ . '/non_existing_file.txt'; // Replace with the path of a non-existing file on your system
+        $this->filePath = __DIR__.'/test_file.txt'; // Replace with your own test file path
+        $this->existingFilePath = __DIR__.'/existing_file.txt'; // Replace with the path of an existing file on your system
+        $this->nonExistingFilePath = __DIR__.'/non_existing_file.txt'; // Replace with the path of a non-existing file on your system
 
         $this->getFileLinesService = new GetFileLinesService();
     }
@@ -54,7 +57,7 @@ class GetFileLinesServiceTest extends TestCase
     public function testHandleWithNonExistingFilePath(): void
     {
         $this->expectException(FileNavigationException::class);
-        $this->expectExceptionMessage("No file with path : \"" . $this->nonExistingFilePath . "\"");
+        $this->expectExceptionMessage('No file with path : "'.$this->nonExistingFilePath.'"');
 
         $this->getFileLinesService->handle($this->nonExistingFilePath);
     }
@@ -86,7 +89,7 @@ class GetFileLinesServiceTest extends TestCase
     public function testGetFileLinesCountWithNonExistingFile(): void
     {
         $this->expectException(FileNavigationException::class);
-        $this->expectExceptionMessage("Failed to open the file: " . $this->nonExistingFilePath);
+        $this->expectExceptionMessage('Failed to open the file: '.$this->nonExistingFilePath);
 
         $this->getFileLinesService->getFileLinesCount($this->nonExistingFilePath);
     }

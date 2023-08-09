@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
     return view('app.navigator')
-            ->with('apiKey', config('admin.api_key'));
+        ->with('apiKey', config('admin.api_key'));
 })
-->middleware('auth:admin')
-->name('app');
+    ->middleware('auth:admin')
+    ->name('app');
 
 Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);

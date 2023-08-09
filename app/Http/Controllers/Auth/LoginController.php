@@ -45,7 +45,7 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
 
-        if($this->guard()->attempt($this->credentials($request), $request->boolean('remember'))) {
+        if ($this->guard()->attempt($this->credentials($request), $request->boolean('remember'))) {
             return $this->sendLoginResponse($request);
         }
 
@@ -55,7 +55,6 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException

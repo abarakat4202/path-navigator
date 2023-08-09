@@ -32,6 +32,6 @@ class AuthServiceProvider extends ServiceProvider
             $guard->setRequest($this->app->refresh('request', $guard, 'setRequest'));
 
             return $guard;
-        });        
+        });
     }
 }

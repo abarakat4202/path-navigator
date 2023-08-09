@@ -2,12 +2,13 @@
 
 namespace App\Modules\Navigator\Domain\Services;
 
-final class AutoCompleteService
-{
+use App\Modules\Navigator\Domain\Services\Contracts\AutoCompleteServiceInterface;
 
+final class AutoCompleteService implements AutoCompleteServiceInterface
+{
     public function __construct()
     {
-        
+
     }
 
     public function handle(string $path): array

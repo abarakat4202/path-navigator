@@ -3,18 +3,18 @@
 namespace App\Modules\Navigator\Domain\Services;
 
 use App\Modules\Navigator\Domain\Exceptions\FileNavigationException;
+use App\Modules\Navigator\Domain\Services\Contracts\GetFileLinesServiceInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class GetFileLinesService
+final class GetFileLinesService implements GetFileLinesServiceInterface
 {
-
     /**
      * The function handles pagination for a file by returning a LengthAwarePaginator
      * object with the specified number of lines per page.
      */
     public function handle(string $filePath, int $page = 1, int $perPage = 10): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        if(!is_file($filePath)) {
+        if (! is_file($filePath)) {
             throw new FileNavigationException("No file with path : \"$filePath\"");
         }
 
@@ -55,7 +55,7 @@ class GetFileLinesService
         $currentLine = 1;
         $selectedLines = [];
 
-        while (!feof($handleFile)) {
+        while (! feof($handleFile)) {
             $line = fgets($handleFile);
             if ($currentLine >= $startLine && $currentLine < $startLine + $numLines) {
                 $selectedLines[$currentLine] = $line;
@@ -64,6 +64,7 @@ class GetFileLinesService
         }
 
         fclose($handleFile);
+
         return $selectedLines;
     }
 
@@ -73,20 +74,20 @@ class GetFileLinesService
      */
     public function getFileLinesCount(string $filePath): int
     {
-        $handleFile = fopen($filePath, "r");
+        $handleFile = fopen($filePath, 'r');
         if ($handleFile === false) {
             throw new FileNavigationException("Failed to open the file: $filePath");
         }
-        
+
         $linecount = 0;
 
-        while(!feof($handleFile)) {
+        while (! feof($handleFile)) {
             $line = fgets($handleFile, 4096);
             $linecount = $linecount + substr_count($line, "\n");
         }
 
         fclose($handleFile);
+
         return $linecount;
     }
-
 }
